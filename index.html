@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixBuddy – AI-Powered Electronics Repair Assistant</title>
+  <meta name="description" content="FixBuddy helps you troubleshoot, diagnose, and repair electronic devices with AI-powered step-by-step guidance. Repair Smarter. Save More.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/logo/logo.png">
+  <style>
+    /* Landing Hero Styles */
+    .hero-section {
+      padding: 4.5rem 0 3.5rem;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 3.5rem;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--primary-light);
+      color: var(--primary);
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .hero-title {
+      font-size: 3.2rem;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .trust-item span.icon {
+      color: var(--success);
+      font-size: 1.1rem;
+    }
+
+    /* Hero Visual Card */
+    .hero-visual-card {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-color);
+      padding: 2rem;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+    }
+    .hero-visual-card::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(8, 102, 216, 0.1) 0%, rgba(0, 207, 232, 0.15) 100%);
+      z-index: -1;
+    }
+    .hero-robot-banner {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      background: linear-gradient(135deg, var(--primary-light) 0%, #ffffff 100%);
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+    .hero-robot-banner img {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-md);
+      object-fit: contain;
+    }
+    .diagnostic-preview-box {
+      background-color: var(--bg-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      border: 1px solid var(--border-color);
+    }
+    .diag-preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Sections */
+    .section-padding {
+      padding: 5rem 0;
+    }
+    .section-header-center {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 3.5rem;
+    }
+    .section-header-center .section-tag {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+    .section-header-center h2 {
+      font-size: 2.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* How It Works Steps */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      position: relative;
+    }
+    .step-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .step-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+    .step-number-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 4px 10px rgba(8, 102, 216, 0.3);
+    }
+    .step-box h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      transition: all var(--transition-fast);
+    }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    .feature-icon-wrapper {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background-color: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* About FixBuddy Split */
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+    }
+    .about-content h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.25rem;
+    }
+    .about-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .about-metric-card {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+    .about-metric-card .stat {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    /* CTA Section */
+    .cta-banner {
+      background: linear-gradient(135deg, #0866D8 0%, #034b9f 100%);
+      color: #ffffff;
+      border-radius: var(--radius-xl);
+      padding: 4rem 3rem;
+      text-align: center;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner h2 {
+      color: #ffffff;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .cta-banner p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .about-split {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img src="assets/logo/logo.png" alt="FixBuddy Logo">
+        <div>Fix<span>Buddy</span> <span class="sub-brand">AI REPAIR</span></div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="repair.html" class="nav-link">Start Repair</a>
+      </nav>
+
+      <div class="nav-auth">
+        <a href="login.html" class="btn btn-ghost btn-sm">Log In</a>
+        <a href="signup.html" class="btn btn-primary btn-sm">Sign Up Free</a>
+      </div>
+
+      <button class="nav-mobile-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>🤖 Next-Gen Electronics Diagnostic Engine</span>
+          </div>
+          <h1 class="hero-title">
+            Repair Smarter.<br>
+            <span>Save More.</span>
+          </h1>
+          <p class="hero-subtitle">
+            FixBuddy is your friendly AI electronics repair assistant. Troubleshoot phone, laptop, television, or appliance issues with instant step-by-step guidance before spending money on costly repairs.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="repair.html" class="btn btn-primary btn-lg">
+              <span>🚀 Diagnose My Device Now</span>
+            </a>
+            <a href="#how-it-works" class="btn btn-outline btn-lg">
+              <span>See How It Works</span>
+            </a>
+          </div>
+
+          <div class="hero-trust">
+            <div class="trust-item">
+              <span class="icon">✓</span> 100% Free DIY Help
+            </div>
+            <div class="trust-item">
+              <span class="icon">✓</span> Real-Time AI Chat
+            </div>
+            <div class="trust-item">
+              <span class="icon">✓</span> Safety-First Steps
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Card -->
+        <div class="hero-visual">
+          <div class="hero-visual-card">
+            <div class="hero-robot-banner">
+              <img src="assets/logo/logo.png" alt="FixBuddy Assistant Robot">
+              <div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 0.2rem;">FixBuddy AI Assistant</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Ready to diagnose circuit & hardware faults</p>
+              </div>
+            </div>
+
+            <div class="diagnostic-preview-box">
+              <div class="diag-preview-header">
+                <span class="badge badge-primary">Laptop Diagnosis Preview</span>
+                <span class="badge badge-success">98% Match</span>
+              </div>
+              <h4 style="font-size: 1.05rem; margin-bottom: 0.35rem; color: var(--text-main);">Identified: Display Static Interruption</h4>
+              <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Symptoms: Keyboard lights up, fans spin, black screen.</p>
+              <div style="font-size: 0.82rem; background: #ffffff; padding: 0.6rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); color: var(--text-main);">
+                <strong>Step 1:</strong> Unplug charger & hold power button for 30s to discharge residual motherboard capacitors.
+              </div>
+            </div>
+
+            <!-- <div style="margin-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+              <span style="color: var(--success); font-weight: 600;">✓ Average user savings: $140+</span>
+              <a href="repair.html" style="font-weight: 600;">Try it live &rarr;</a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section-padding" id="how-it-works">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-tag">Simple 4-Step Process</span>
+        <h2>How FixBuddy Works</h2>
+        <p>No electronics degree required. We break down complex electronics repairs into foolproof, manageable steps.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-box">
+          <div class="step-number-badge">1</div>
+          <h3>Select & Describe</h3>
+          <p>Choose your device category (phone, laptop, TV, appliance) and describe the faulty symptoms you observe.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-number-badge">2</div>
+          <h3>Upload Photo</h3>
+          <p>Snap a photo of the damaged component, loose port, or error display to empower precision analysis.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-number-badge">3</div>
+          <h3>AI Repair Guide</h3>
+          <p>Receive an instant breakdown with probable root causes, required tools, safety alerts, and step-by-step actions.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-number-badge">4</div>
+          <h3>Ask Questions</h3>
+          <p>Unsure about a multimeter reading or cable latch? Chat directly with FixBuddy for live clarification.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section-padding" id="features" style="background-color: #ffffff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-tag">Key Capabilities</span>
+        <h2>Built to Empower Every DIYer</h2>
+        <p>FixBuddy equips you with professional electronics troubleshooting tools and knowledge at your fingertips.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">🧠</div>
+          <h3>AI Hardware Diagnostics</h3>
+          <p>Analyzes symptom patterns across thousands of known electronics failure modes to identify probable root causes quickly.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">⚠️</div>
+          <h3>Safety Precautions First</h3>
+          <p>Crucial safety alerts highlight dangerous high-voltage circuits, battery hazards, and grounding protocols before you open cases.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">☑️</div>
+          <h3>Interactive Step Checklist</h3>
+          <p>Track your progress step-by-step as you complete diagnostic tests, cable reseats, and component cleanups.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">💬</div>
+          <h3>Contextual Follow-up Chat</h3>
+          <p>Ask follow-up questions in real-time. FixBuddy keeps memory of your device and problem description throughout the discussion.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">🕒</div>
+          <h3>Repair History Tracker</h3>
+          <p>All your past diagnostic tickets, solutions, and conversation histories are safely organized in your personal dashboard.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper">💰</div>
+          <h3>Cost & Difficulty Insights</h3>
+          <p>Estimated repair times and difficulty ratings help you decide whether a DIY fix is practical or when to consult an expert.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About FixBuddy Section -->
+  <section class="section-padding" id="about">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-image-side">
+          <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-radius: var(--radius-xl); padding: 3rem 2rem; color: #ffffff; text-align: center;">
+            <img src="assets/logo/logo.png" alt="FixBuddy Mascot" style="width: 140px; height: 140px; margin: 0 auto 1.5rem; background: #ffffff; border-radius: 50%; padding: 8px;">
+            <h3 style="color: #ffffff; font-size: 1.7rem; margin-bottom: 0.5rem;">FixBuddy Mission</h3>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1rem;">
+              "Democratizing electronics repair knowledge to reduce electronic waste and save households hard-earned money."
+            </p>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <span class="section-tag" style="text-transform: uppercase; font-size: 0.8rem; font-weight: 700; color: var(--primary);">About FixBuddy</span>
+          <h2>Repair Knowledge Accessible to Everyone</h2>
+          <p style="margin-bottom: 1rem;">
+            Every year, millions of working gadgets and appliances are discarded prematurely or subject to exorbitant repair shop diagnostic charges for simple fixes like blown thermal fuses, loose ribbon cables, or oxidized contacts.
+          </p>
+          <p>
+            FixBuddy provides clear, friendly, and safe instructions tailored to your specific problem, encouraging sustainable electronics ownership and hands-on confidence.
+          </p>
+
+          <div class="about-metrics">
+            <div class="about-metric-card">
+              <div class="stat">94%</div>
+              <p style="font-size: 0.85rem; margin-top: 0.25rem;">Issues diagnosed without shop visits</p>
+            </div>
+            <div class="about-metric-card">
+              <div class="stat">$150+</div>
+              <p style="font-size: 0.85rem; margin-top: 0.25rem;">Average savings per resolved repair</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section-padding" style="padding-top: 0;">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to Fix Your Broken Electronics?</h2>
+        <p>Get instant AI troubleshooting instructions tailored to your device in seconds. No credit card required.</p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="repair.html" class="btn btn-secondary btn-lg">Start New Repair Request &rarr;</a>
+          <a href="signup.html" class="btn btn-outline btn-lg" style="color: #ffffff; border-color: #ffffff;">Create Free Account</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" style="margin-bottom: 0.75rem;">
+            <img src="assets/logo/logo.png" alt="FixBuddy Logo">
+            <div>Fix<span>Buddy</span></div>
+          </a>
+          <p>FixBuddy is an AI-powered electronics repair assistance platform making DIY troubleshooting accessible, safe, and cost-effective.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About FixBuddy</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#features">Features</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Repair Modules</h4>
+          <ul>
+            <li><a href="repair.html">New Repair Request</a></li>
+            <li><a href="dashboard.html">User Dashboard</a></li>
+            <li><a href="history.html">Repair History</a></li>
+            <li><a href="profile.html">Profile Settings</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Register Account</a></li>
+            <li><a href="dashboard.html">Demo Workspace</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 FixBuddy Inc. All rights reserved. Repair Smarter. Save More.</div>
+        <div>Designed with HTML5, CSS3 & Vanilla JavaScript</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

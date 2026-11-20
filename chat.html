@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Follow-up AI Chat – FixBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/chat.css">
+  <link rel="icon" type="image/png" href="assets/logo/logo.png">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img src="assets/logo/logo.png" alt="FixBuddy Logo">
+        <div>Fix<span>Buddy</span> <span class="sub-brand">AI CHAT</span></div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="repair.html" class="nav-link">New Repair</a>
+        <a href="history.html" class="nav-link">History</a>
+        <a href="profile.html" class="nav-link">Settings</a>
+      </nav>
+
+      <div class="nav-auth"></div>
+
+      <button class="nav-mobile-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main class="chat-wrapper">
+    <!-- Active Ticket Sidebar Context -->
+    <aside class="chat-ticket-sidebar">
+      <div class="sidebar-panel-header">
+        <h3>Repair Ticket Context</h3>
+        <p class="text-muted">FixBuddy is answering questions about this specific device:</p>
+      </div>
+
+      <div class="sidebar-panel-content">
+        <div class="ticket-detail-item">
+          <div class="ticket-detail-label">Device Name / Model</div>
+          <div class="ticket-detail-val" id="chatTicketDevice">Dell Inspiron 15</div>
+        </div>
+
+        <div class="ticket-detail-item">
+          <div class="ticket-detail-label">Category</div>
+          <div class="ticket-detail-val" id="chatTicketCategory">Laptop</div>
+        </div>
+
+        <div class="ticket-detail-item">
+          <div class="ticket-detail-label">Identified Problem</div>
+          <div class="ticket-detail-val" id="chatTicketProblem">Display Power Interruption</div>
+        </div>
+
+        <div class="ticket-detail-item">
+          <div class="ticket-detail-label">Difficulty & Status</div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
+            <span class="badge badge-primary" id="chatTicketDifficulty">Moderate</span>
+            <span class="badge badge-warning" id="chatTicketStatus">In Progress</span>
+          </div>
+        </div>
+
+        <div class="ticket-thumb-box" id="chatTicketThumb" style="display: none;"></div>
+
+        <div style="margin-top: 2rem;">
+          <a href="solution.html" class="btn btn-outline btn-block btn-sm">&larr; Return to Repair Guide</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Chat Workspace -->
+    <section class="chat-main-card">
+      <div class="chat-header-bar">
+        <div class="chat-assistant-meta">
+          <div class="assistant-avatar">
+            <img src="assets/logo/logo.png" alt="FixBuddy Assistant">
+          </div>
+          <div class="assistant-info">
+            <h4>FixBuddy AI Assistant</h4>
+            <div class="online-status">
+              <div class="online-dot"></div>
+              <span>Online • Hardware Diagnostic Specialist</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <a href="solution.html" class="btn btn-ghost btn-sm" title="View Full Guide">📋 Guide</a>
+        </div>
+      </div>
+
+      <!-- Messages Area -->
+      <div class="chat-messages-container" id="chatMessagesContainer">
+        <!-- Rendered dynamically by chat.js -->
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="typing-indicator" id="chatTypingIndicator">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+
+      <!-- Suggested Prompt Chips -->
+      <div class="chat-suggestions-bar">
+        <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); margin-right: 0.25rem;">Ask:</span>
+        <button type="button" class="suggestion-chip" data-prompt="How do I safely test with a multimeter?">⚡ Multimeter test</button>
+        <button type="button" class="suggestion-chip" data-prompt="Is it safe to open the case myself?">🛡️ Safety precautions</button>
+        <button type="button" class="suggestion-chip" data-prompt="Where can I buy reliable replacement parts?">🛒 Replacement parts</button>
+        <button type="button" class="suggestion-chip" data-prompt="The screen is still black after reseating RAM, what should I check next?">❓ What if it still doesn't work?</button>
+      </div>
+
+      <!-- Input Bar -->
+      <form id="chatForm" class="chat-input-bar">
+        <input type="text" id="chatInput" class="chat-input-field" placeholder="Ask FixBuddy a question about your repair steps..." autocomplete="off" required>
+        <button type="submit" class="chat-send-btn" id="chatSendBtn" title="Send Message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>

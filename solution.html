@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Repair Solution – FixBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/repair.css">
+  <link rel="icon" type="image/png" href="assets/logo/logo.png">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img src="assets/logo/logo.png" alt="FixBuddy Logo">
+        <div>Fix<span>Buddy</span> <span class="sub-brand">SOLUTION</span></div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="repair.html" class="nav-link">New Repair</a>
+        <a href="history.html" class="nav-link">History</a>
+        <a href="profile.html" class="nav-link">Settings</a>
+      </nav>
+
+      <div class="nav-auth"></div>
+
+      <button class="nav-mobile-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main class="solution-container">
+    <!-- Header Summary Card -->
+    <div class="solution-header-card">
+      <div class="solution-title-row">
+        <div>
+          <div class="solution-device-badge" id="solDeviceBadge">Laptop • Standard</div>
+          <h1 id="solIdentifiedProblem" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--text-main);">
+            Display Power Interruption or Static Discharge Lock
+          </h1>
+          <div style="font-size: 0.92rem; color: var(--text-muted);">
+            Reported Issue: <em id="solUserDesc">"Laptop screen is black but fans spin"</em>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem;">
+          <span class="badge badge-warning" id="solStatusBadge">In Progress</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted);" id="solDate">Nov 20, 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Safety Warning Banner -->
+    <div class="safety-warning-banner">
+      <div class="safety-warning-icon">⚠️</div>
+      <div class="safety-warning-body">
+        <h4>Critical Safety Precautions</h4>
+        <p id="solSafetyText">
+          Disconnect all AC power adapters and internal batteries before touching any internal electronic components. Ground yourself to avoid electrostatic discharge (ESD) damaging delicate microchips. Dangerous repairs involving high voltage capacitors should be referred to qualified technicians.
+        </p>
+      </div>
+    </div>
+
+    <!-- Solution Grid -->
+    <div class="solution-grid">
+      <!-- Left Column: Causes & Step-by-Step Instructions -->
+      <div class="solution-main">
+        <!-- Possible Causes -->
+        <div class="causes-card">
+          <h3 style="font-size: 1.25rem;">🔍 Probable Causes</h3>
+          <p style="font-size: 0.88rem; margin-top: 0.2rem;">Based on AI diagnostic symptom analysis:</p>
+          <div class="causes-list" id="solCausesList">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Step-by-Step Instructions Checklist -->
+        <div class="instructions-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h3 style="font-size: 1.25rem;">🛠️ Step-by-Step Repair Instructions</h3>
+              <p style="font-size: 0.88rem; margin-top: 0.2rem;">Follow each step sequentially. Mark checkmarks as you complete them.</p>
+            </div>
+          </div>
+
+          <div class="instructions-steps" id="solStepsList">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Alternative Solutions -->
+        <div class="card" style="padding: 1.5rem; margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">💡 Alternative Solutions & Escalation</h3>
+          <p id="solAlternatives" style="font-size: 0.92rem; color: var(--text-main);">
+            If basic hardware resets do not solve the malfunction, the issue may stem from an integrated component level fault requiring specialized micro-soldering or certified manufacturer warranty service.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Specs, Tools, Uploaded Image -->
+      <aside class="solution-sidebar">
+        <!-- Summary Meta Specs -->
+        <div class="summary-meta-card">
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">📋 Diagnostic Overview</h3>
+
+          <div class="meta-spec-row">
+            <span class="meta-spec-label">Device:</span>
+            <span class="meta-spec-value" id="solDeviceName">Laptop</span>
+          </div>
+
+          <div class="meta-spec-row">
+            <span class="meta-spec-label">Difficulty:</span>
+            <span class="meta-spec-value" id="solDifficulty" style="color: var(--primary);">Moderate</span>
+          </div>
+
+          <div class="meta-spec-row">
+            <span class="meta-spec-label">Estimated Time:</span>
+            <span class="meta-spec-value" id="solEstimatedTime">25-35 mins</span>
+          </div>
+
+          <div class="meta-spec-row">
+            <span class="meta-spec-label">Success Rate:</span>
+            <span class="meta-spec-value" style="color: var(--success);">88% DIY</span>
+          </div>
+        </div>
+
+        <!-- Recommended Tools -->
+        <div class="summary-meta-card">
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.35rem;">🧰 Required Tools & Materials</h3>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">Ensure you have these ready before starting:</p>
+          <div class="tools-tags" id="solToolsTags">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Uploaded Photo View -->
+        <div class="uploaded-view-card" id="solImageCard" style="display: none;">
+          <h3 style="font-size: 1rem; margin-bottom: 0.6rem;">📷 Uploaded Device Photo</h3>
+          <img id="solImageView" src="" alt="Device Reference Image">
+        </div>
+
+        <!-- Quick Help Card -->
+        <div class="card" style="background: linear-gradient(135deg, var(--primary-light) 0%, #ffffff 100%); border-color: var(--primary);">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <img src="assets/logo/logo.png" alt="Robot" style="width: 36px; height: 36px;">
+            <h4 style="font-size: 1rem;">Need Help with a Step?</h4>
+          </div>
+          <p style="font-size: 0.85rem; margin-bottom: 1rem;">FixBuddy can clarify test multimeter steps, disassembly tricks, or replacement parts right now.</p>
+          <button class="btn btn-primary btn-block btn-sm" id="askChatBtn">Open AI Follow-up Chat 💬</button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Bottom Actions Bar -->
+    <div class="solution-bottom-actions">
+      <div>
+        <a href="dashboard.html" class="btn btn-outline">&larr; Back to Dashboard</a>
+      </div>
+      <div style="display: flex; gap: 0.75rem;">
+        <button class="btn btn-outline" id="printGuideBtn">🖨️ Print / Save Guide</button>
+        <button class="btn btn-primary" id="markResolvedBtn">✓ Mark as Resolved</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/solution.js"></script>
+</body>
+</html>

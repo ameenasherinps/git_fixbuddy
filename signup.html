@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up – FixBuddy</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="icon" type="image/png" href="assets/logo/logo.png">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img src="assets/logo/logo.png" alt="FixBuddy Logo">
+        <div>Fix<span>Buddy</span> <span class="sub-brand">SIGN UP</span></div>
+      </a>
+      <div class="nav-auth">
+        <span style="font-size: 0.9rem; color: var(--text-muted);">Already registered?</span>
+        <a href="login.html" class="btn btn-outline btn-sm">Log In</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="auth-wrapper">
+      <!-- Visual Side -->
+      <div class="auth-visual">
+        <div class="auth-visual-header">
+          <a href="index.html" class="auth-logo">
+            <img src="assets/logo/logo.png" alt="FixBuddy Robot">
+            <span>FixBuddy AI</span>
+          </a>
+        </div>
+
+        <div class="auth-visual-body">
+          <h2>Start Repairing Smarter Today.</h2>
+          <p>Join thousands of DIY enthusiasts, students, and gadget owners diagnosing electronic issues safely with AI.</p>
+          
+          <div class="auth-perks">
+            <div class="auth-perk-item">
+              <div class="auth-perk-icon">✓</div>
+              <span>Instant AI step-by-step repair guides</span>
+            </div>
+            <div class="auth-perk-item">
+              <div class="auth-perk-icon">✓</div>
+              <span>Upload circuit & device photos for diagnosis</span>
+            </div>
+            <div class="auth-perk-item">
+              <div class="auth-perk-icon">✓</div>
+              <span>Interactive follow-up Q&A assistant</span>
+            </div>
+            <div class="auth-perk-item">
+              <div class="auth-perk-icon">✓</div>
+              <span>Full repair history & maintenance logs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-visual-footer">
+          "Repair Smarter. Save More." – FixBuddy 1.0
+        </div>
+      </div>
+
+      <!-- Form Side -->
+      <div class="auth-form-container">
+        <div class="auth-form-header">
+          <h2>Create Your Account</h2>
+          <p>Enter your details below to get started with FixBuddy.</p>
+        </div>
+
+        <form id="signupForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="fullName">Full Name <span class="required">*</span></label>
+            <input type="text" id="fullName" class="form-control" placeholder="e.g. Alex Morgan" required autocomplete="name">
+            <div class="invalid-feedback">Please enter your full name.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" class="form-control" placeholder="name@example.com" required autocomplete="email">
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password <span class="required">*</span></label>
+            <div class="input-password-wrapper">
+              <input type="password" id="password" class="form-control" placeholder="At least 6 characters" required autocomplete="new-password">
+              <button type="button" class="toggle-password-btn" data-target="password" title="Show password">👁️</button>
+            </div>
+            <div class="invalid-feedback">Password must be at least 6 characters.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="confirmPassword">Confirm Password <span class="required">*</span></label>
+            <div class="input-password-wrapper">
+              <input type="password" id="confirmPassword" class="form-control" placeholder="Re-enter your password" required autocomplete="new-password">
+              <button type="button" class="toggle-password-btn" data-target="confirmPassword" title="Show password">👁️</button>
+            </div>
+            <div class="invalid-feedback">Passwords do not match.</div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">
+            Create Free Account &rarr;
+          </button>
+
+          <p style="text-align: center; font-size: 0.9rem; margin-top: 1.5rem; color: var(--text-muted);">
+            Already have an account? <a href="login.html" style="font-weight: 600;">Log in here</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
